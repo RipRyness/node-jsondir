@@ -1,3 +1,7 @@
+forked from: https://github.com/dwieeb/node-jsondir
+
+added ability to get CRC32 for files
+
 node-jsondir
 ============
 
@@ -89,7 +93,7 @@ After running the json2dir example to create that file structure, the following 
 You can get additional attributes by adding elements to the `attributes` array in the dir2json options. The following example includes the `-content` (for files) and `-mode` attributes, as well as `-path` and `-type` (which are always included):
 
 ```javascript
-jsondir.dir2json('path/to/directory', { attributes: ['content', 'mode'] }, function(err, results) {
+jsondir.dir2json('path/to/directory', { attributes: ['content', 'mode', 'crc'] }, function(err, results) {
     if (err) throw err;
     console.dir(results);
 });
@@ -121,3 +125,4 @@ Each node can have a variety of attributes:
 * `-name`: In case you need to determine the filename at runtime, if this attribute is specified, it will be used for the filename instead of the node's key.
 * `-dest`: Specify the path of the symlink destination. If this attribute is specified, `-type` is assumed to be `l`.
 * `-content`: Specify the contents of the file. If this attribute is specified, `-type` is assumed to be `f`.
+* `-crc`: Specify the CRC32 of the file. If this attribute is specified, `-type` is assumed to be `f`.

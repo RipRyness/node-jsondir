@@ -167,6 +167,10 @@ var createFileNode = function(file, options) {
     if (options.attributes.indexOf('group') !== -1) {
       node['-group'] = file.getGid();
     }
+
+    if (options.attributes.indexOf('crc') !== -1 && file.type !== File.Types.directory) {
+      node['-crc'] = file.getCrc();
+    }
   }
 
   return node;

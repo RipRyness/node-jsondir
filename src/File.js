@@ -10,6 +10,7 @@ var PATH = require('path');
 var FS = require('graceful-fs');
 var mkdirp = require('mkdirp');
 var uidNumber = require('uid-number');
+var crc = require('crc');
 
 var Exception = function(message) {
   this.message = message;
@@ -345,6 +346,15 @@ File.prototype.getUid = function() {
  */
 File.prototype.getGid = function() {
   return this.gid;
+};
+
+/**
+ * Returns the CRC32 of the File.
+ *
+ * @return {string}
+ */
+File.prototype.getCrc = function() {
+  return crc.crc32(FS.readFileSync(this.path)).toString(16);
 };
 
 /**
